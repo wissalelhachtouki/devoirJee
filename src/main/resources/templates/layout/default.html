@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extrasspringsecurity5">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initialscale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+		integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+	<title>Template</title>
+</head>
+
+<body>
+	<section layout:fragment="header" class="container">
+		<div class="container">
+			<div sec:authorize="isAuthenticated()">
+				Bienvenue <span sec:authentication="name"></span>:<span sec:authentication="authorities"></span>
+				<form th:action="@{/logout}" method="post">
+					<input type="submit" value="Déconnexion">
+				</form>
+			</div>
+			<div>
+				<ul>
+					<li sec:authorize="hasRole('ADMIN')">
+						<a id="admin" th:href="@{/admin}">Liste des tâches non attribués</a>
+					</li>
+					<li sec:authorize="hasRole('DEV')">
+						<a id="dev" th:href="@{/dev}">Liste des tâches</a>
+					</li>
+					<li sec:authorize="hasRole('CLIENT')">
+						<a id="client" th:href="@{/client}">Liste des tâches</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+	<section layout:fragment="contenu" class="container mt-5">
+		<p>Contenu de la page</p>
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+		crossorigin="anonymous"></script>
+	</section>
+	<section layout:fragment="footer" class="container">
+	</section>
+</body>
+
+</html>

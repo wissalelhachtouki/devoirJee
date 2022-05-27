@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+
+<head>
+	<title>Inscription</title>
+</head>
+
+<body class="text-center">
+	<section layout:fragment="contenu">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-6">
+					<form th:action="@{/inscription}" th:object="${user}" method="post">
+						<input type="text" name="id" hidden th:field="*{id}" />
+						<div th:if="${param.error}">
+							<div class="alert alert-danger"> username ou password erroné</div>
+						</div>
+						<div th:if="${param.logout}">
+							<div class="alert alert-info">Vous êtes déconnecté(e)</div>
+						</div>
+						<div class="form-group">
+							<label for="userName">Username</label>
+							<input type="text" class="form-control" id="userName" name="userName"
+								th:field="*{userName}">
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" class="form-control" id="password" name="password"
+								th:field="*{password}" required autofocus="autofocus">
+						</div>
+						<div class="form-group form-check">
+							<span>Déjà enregistré? <a href="/" th:href="@{/login}">Login</a></span>
+						</div>
+						<button type="submit" class="btn btn-primary">Enregistrer</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/default">
+
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+		integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+	
+	<title>Attribuer un ticket</title>
+</head>
+
+<body>
+	<section layout:fragment="contenu">
+		<div class="container">
+			<form th:action="@{/admin/attribuer}" th:object="${attribution}" method="post">
+				<fieldset>
+					<legend>Attribuer un ticket</legend>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="idDev">Developeur</label>
+							<select class="form-control" name="idDev" th:field="*{idDev}">
+								<option value="0">selectionner un developeur</option>
+								<option th:each="d : ${devs}" th:value="${d.getIdDev()}" th:text="${d.getUsername()}">
+								</option>
+							</select>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="idTicket">Ticket</label>
+							<select class="form-control" name="idTicket" th:field="*{idTicket}">
+								<option value="0">selectionner une ticket</option>
+								<option th:each="t : ${tickets}" th:value="${t.getIdTicket()}"
+									th:text="${t.getDescription()}">
+								</option>
+							</select>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary">Attribuer</button>
+				</fieldset>
+			</form>
+		</div>
+	</section>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

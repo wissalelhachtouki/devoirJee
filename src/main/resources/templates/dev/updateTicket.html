@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/default">
+
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+		integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+	
+	<title>Changer le statut d'un ticket</title>
+</head>
+
+<body>
+	<section layout:fragment="contenu">
+		<div class="container">
+			<form th:action="@{/dev/} + ${url}" th:object="${ticket}" method="post">
+				<fieldset>
+					<legend>Changer le statut d'un ticket</legend>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="idTicket">idTicket</label>
+							<input readonly type="text" name="idTicket" class="form-control" th:field="*{idTicket}" />
+						</div>
+						<div class="form-group col-md-6">
+							<label for="urgence">Urgence</label>
+							<input readonly type="text" name="urgence" class="form-control" th:field="*{urgence}" />
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="logiciel">Logiciel</label>
+							<input readonly type="text" name="logiciel" class="form-control" th:field="*{logiciel}" />
+						</div>
+						<div class="form-group col-md-6">
+							<label for="environnement">Environnement</label>
+							<input readonly type="text" name="environnement" class="form-control"
+								th:field="*{environnement}" />
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label for="description">Description</label>
+							<textarea readonly rows="3" name="description" class="form-control"
+								th:field="*{description}" />
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label for="statut">Statut</label>
+							<select class="form-control" name="statut" th:field="*{statut}">
+								<option value="0">En cours de traitement</option>
+								<option value="1">Résolu</option>
+							</select>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary">Appliquer</button>
+				</fieldset>
+			</form>
+		</div>
+	</section>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
